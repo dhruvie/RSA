@@ -1,5 +1,5 @@
 
-Img=(imread("p.jpg"));
+Img=(imread("programmer.jpg"));
 #figure, imshow(Img)
 #format long
 
