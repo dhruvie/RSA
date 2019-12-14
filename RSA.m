@@ -186,7 +186,6 @@ function GCD= gcd(A,B,le,ltf)
         [d,ld]=Mult(b,r,d,j,ld,lr);
       endfor
       [d,ld]=add(d,B(ltf-le-i+1),ld);
-      [d,ld]=EliminateZeros(d,ld);
       temp=0;
       for j=0:9
         a=1;
@@ -201,7 +200,12 @@ function GCD= gcd(A,B,le,ltf)
         endwhile
         d2=Copy(d2,d,ld);
         k=1; flag=1;
-        while(k<ld)
+        t=a;
+        if(ld<a)
+          [result,a]=EliminateZeros(result,a);
+          t=ld;
+        endif
+        while(k<t)
           if(a>ld)
             flag=0;
             break;
