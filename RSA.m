@@ -3,9 +3,9 @@ Img=(imread("programmer.jpg"));
 #figure, imshow(Img)
 
 #Step 1: Find p and q, such that they are large prime numbers
-p=floor(1000000+(100000000-1000000)*rand());
+p=floor(10000+(1000000-10000)*rand());
 p
-q=floor(1000000+(100000000-1000000)*rand());
+q=floor(10000+(1000000-10000)*rand());
 q
 
 #if p is even, increase by 1 and if q is even increase by 1
@@ -76,7 +76,7 @@ Q1(1)=Q1(1)-1;
 #Step 2:Calculate The Value of n and Euler Totient Function
 
 N=zeros(200,1);
-Totientfunc= zeros(200,1);
+Totientfunc= zeros(1,200);
 function [Result,length]= Multiplication(A,B,C,lp,lq,k,temp)
   for i=1:(lp-1)
     k=i;
@@ -106,12 +106,12 @@ disp("N:")
 disp("Totientfunc:")
 [Totientfunc,ltf]=Multiplication(P1,Q1,Totientfunc,lp,lq,0,0);
 
-#Totientfunc=[7,5,2,0,6,2,1]
-#ltf=8;
+#Totientfunc=[6,9,0,4,0,2,3,4,3,5,4,6]
+#ltf=13;
 #Step 3: Set e such that 1 < e < Totientfunc  and gcd(e,Totientfunc)=1
 # i.e., e should be co-prime.
 
-e=floor(1000000+(100000000-1000000)*rand());
+e=floor(1000+(100000-1000)*rand());
 E=[];
 le=1;
 while(e!=0)
@@ -119,8 +119,8 @@ while(e!=0)
   le++;
   e=floor(e/10);
 endwhile
-#E=[7,3]
-#le=3;
+E
+le
 
 function [X,i]= Mult(b,y,z,j,n,m)
   temp=0;x=0;
@@ -366,11 +366,13 @@ function [Result,f]= Subtract(A,B,Z,n,flag)
         break;
       endif
       x=x+10;
-      B(i+1)=B(i+1)-1;
+      B(1,i+1)=B(1,i+1)-1;
     endif
     Z(i)=x;
   endfor
   Result=Z;
+ # disp("ZZZ")
+  #Z
   f=flag;
 endfunction
 
@@ -386,7 +388,6 @@ function [Result,l]=addArray(X,Y,n,Z)
     temp=floor(temp/10);
   endwhile
   Result=Z;
-  Z
   l=i;
 endfunction
 
@@ -417,6 +418,8 @@ function [Result,l,Sign]=Sub(A,B,al,bl,Aneg,Bneg)
     if(flag==0)
       [C,flag]=Subtract(B,A2,C,al,flag);
       [C,cl]=EliminateZeros(C,al);
+      #disp("ok")
+      #C
       if(Aneg(1)==1 && Bneg==1)
         Cneg=1;
       else
@@ -425,6 +428,8 @@ function [Result,l,Sign]=Sub(A,B,al,bl,Aneg,Bneg)
     endif
     if(flag)
       [C,flag]=Subtract(A,B,C,bl,1);
+      #disp("ok2")
+      #C
       [C,cl]=EliminateZeros(C,al);
       if(Aneg(1)==1 && Bneg==1)
         Cneg=0;
@@ -447,7 +452,7 @@ function [Result,l,Sign]=Sub(A,B,al,bl,Aneg,Bneg)
 endfunction
 
 
-function [key,l]=private(A,B,le,ltf)
+function [key,l,Status]=private(A,B,le,ltf)
   X=zeros(2,100);
   X(1,1)=1; X(2,1)=0;
   Xl1=2; Xl2=2;
@@ -507,10 +512,10 @@ function [key,l]=private(A,B,le,ltf)
     endfor
     Xl2=lc;
     Xneg(2)=Cneg;
-    Xneg
-    Xl1
-    Xl2
-    X
+    Xneg;
+    Xl1;
+    Xl2;
+    X;
     
     #B
     C=zeros(1,100);Cneg=0;
@@ -527,24 +532,10 @@ function [key,l]=private(A,B,le,ltf)
         temp=floor(temp/10);
       endwhile
     endfor
-    disp("Result")
-    i=k-1;
-    while(i>=1)
-      C(i)
-      i--;
-    endwhile
     if(Yneg(2)==1)
       Cneg=1;
     endif
     [C,lc,Cneg]=Sub(Y,C,Yl1,k,Yneg,Cneg);
-    i=lc-1;
-    disp("Y:C")
-    Cneg
-    lc
-    while(i>=1)
-      C(i)
-      i=i-1;
-    endwhile
     for i=1:Yl2-1
       Y(1,i)=Y(2,i);
     endfor
@@ -555,10 +546,10 @@ function [key,l]=private(A,B,le,ltf)
     endfor
     Yl2=lc;
     Yneg(2)=Cneg;
-    Yneg
-    Yl1
-    Yl2
-    Y
+    Yneg;
+    Yl1;
+    Yl2;
+    Y;
     
     #D
     C=zeros(1,200);Cneg=0;
@@ -576,12 +567,6 @@ function [key,l]=private(A,B,le,ltf)
       endwhile
     endfor
     [C,lc,Cneg]=Sub(D,C,Dl1,k,Dneg,Cneg);
-    i=lc-1;
-    disp("D:C")
-    while(i>=1)
-      C(i);
-      i=i-1;
-    endwhile
     for i=1:Dl2-1
       D(1,i)=D(2,i);
     endfor
@@ -592,14 +577,20 @@ function [key,l]=private(A,B,le,ltf)
     endfor
     Dl2=lc;
     Dneg(2)=Cneg;
-    D;
-    Dl2;
+    #D
+    #Dl2
     
     #break 
     if((Dl2-1)==1 && D(2,1)==1)
-      key=Y;
-      l=Yl2;
-      break;
+     for i=1:Yl2-1
+      Y(1,i)=Y(2,i);
+     endfor
+     Yl1=Yl2;
+     Yneg(1)=Yneg(2);
+     key=Y;
+     l=Yl1;
+     Status=Yneg
+     break;
     endif
     
     #k
@@ -607,11 +598,21 @@ function [key,l]=private(A,B,le,ltf)
   endwhile
 endfunction
 
-[Dkey,Dl]=private(E,Totientfunc,le,ltf);
+[Dkey,Dl,Sign]=private(E,Totientfunc,le,ltf);
 Dkey
 i=Dl-1;
 while(i>=1)
-  Dkey(2,i)
+  Dkey(1,i)
   i--;
 endwhile
+
+#Check wheteher D is >Totient function or not. Or whether Dkey is negative or Positive.
+
+if(Sign(1)==1)
+  Sign(1)=0;
+  #Sub(Dkey,Totientfunc,Dl,ltf,Sign,0);
+  Dkey
+elseif(Dl>=ltf)
+  disp("ok")
+endif
 
