@@ -75,9 +75,10 @@ Q1(1)=Q1(1)-1;
 
 #Step 2:Calculate The Value of n and Euler Totient Function
 
-N=zeros(200,1);
+N=zeros(1,200);
 Totientfunc= zeros(1,200);
-function [Result,length]= Multiplication(A,B,C,lp,lq,k,temp)
+function [Result,length]= Multiplication(A,B,C,lp,lq)
+  C=zeros(1,200);k=1;temp=0;
   for i=1:(lp-1)
     k=i;
     for j=1:(lq-1)
@@ -102,7 +103,7 @@ function [Result,length]= Multiplication(A,B,C,lp,lq,k,temp)
 endfunction
 
 disp("N:")
-[N,ln]=Multiplication(P,Q,N,lp,lq,0,0);
+[N,ln]=Multiplication(P,Q,lp,lq);
 disp("Totientfunc:")
 [Totientfunc,ltf]=Multiplication(P1,Q1,Totientfunc,lp,lq,0,0);
 

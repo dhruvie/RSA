@@ -27,6 +27,11 @@ Then, in OCTAVE/MATLAB open that project RSA.m
 And , RUN IT... 
 
 
+# Additional Information
+I've Uploaded some C++ Algorithms that are used by me in this code. As everyone is familiar with C++ language so it will be easy for understand. 
+Now, in RSA we deal with really big numbers. And every language as a limitation upto how large Numbers can be stored in any Datatype. Therefore, we need a Data Structure to store that Big Numbers. So, here I used Array and all  C++ Algorithms are about doing Multiplications,Divisions, Subtraction and Addition in array. Now, we can find any (Add, Div, Sub, Mult) with no limitations. 
+
 # CONTIBUTORS
 These are the names of the contributors who contribute to my project.
 https://github.com/dhruvie/RSA/graphs/contributors
+
