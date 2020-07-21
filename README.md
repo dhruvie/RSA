@@ -13,8 +13,11 @@ These instructions will get you a copy of the project up and running on your loc
 # Prerequisites
 
 You just need Python 3.0+ or Jupyter Notebook installed in your local machine or you can open the project in Google Colab.
+
 Install Python: https://www.python.org/downloads/
+
 Install Jupyter Notebook:-  https://jupyter.org/install.html
+
 For Google Colab:- Just type Google Colab in any Search Engine and click on the Google Colab link(Upload Image and Code File in Your Google Drive Account and make sure the Path is correct according to your account where you have Uploaded)
 
 
